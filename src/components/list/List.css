@@ -1,0 +1,38 @@
+.list-container {
+    margin: 0 auto;
+    max-width: 90%;
+    padding: 10px 5px;
+}
+
+.list-item-container {
+    padding: 15px;
+    border: 1px solid gray;
+    margin: 10px 0;
+}
+
+.list-item-list {
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@media (min-width: 768px) {
+    .list-container {
+        max-width: 700px;
+    }
+
+    .list-item-container {
+        padding: 15px;
+        border: 1px solid green;
+        margin: 10px 0;
+    }
+
+}
+
+@media (min-width: 1200px) {
+
+    .list-item-container {
+        border: 1px solid red;
+    }
+}
