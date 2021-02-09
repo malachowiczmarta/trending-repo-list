@@ -12,7 +12,11 @@ const Language = ({language, handleLangChange}) => {
     const getLanguageList = async () => {
         try {
         return Axios.get(`http://localhost:8000/languages`).then((response) => {
-            setLanguageList(response.data);
+            const languages = response.data;
+            const allLang = [{urlParam: "all-lang", name: "all"}];
+            const data = allLang.concat(languages);
+            console.log(data)
+            setLanguageList(data);
             setLoading(false);
         });
         } catch (error) {
@@ -25,9 +29,6 @@ const Language = ({language, handleLangChange}) => {
     useEffect(() => {
         getLanguageList();
     }, []);
-
-
-
 
   return (
     <form>

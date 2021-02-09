@@ -21,11 +21,12 @@ function List () {
 
     const getRepoList = async (language, radio) => {
         try {
-        return Axios.get(`http://localhost:8000/repositories?language=${language}&since=${radio}`).then((response) => {
-            setRepoList(response.data.map((item, index) => {
+            return Axios.get(`http://localhost:8000/repositories?language=${language}&since=${radio}`).then((response) => {
+            const data = response.data.map((item, index) => {
                 item.id = index;
                 return item;
-            }));
+            });
+            setRepoList(data);
             setLoading(false);
         });
         } catch (error) {
@@ -44,22 +45,22 @@ function List () {
     };
 
     const onHandleLangChange = (lang) => {
-        setLanguage(lang)
+        if (lang === "all") {
+            return setLanguage("")
+        };
+        setLanguage(lang);
     };
 
 
 
     const onHandleBtnClick = () => {
         if(sortOrder === defaultSort) {
-            console.log("Set to Ascending");
             setSortOrder(ascendingSort);
         } else if (sortOrder === ascendingSort) {
-            console.log("Set to Descending");
             setSortOrder(descendingSort)
         } else {
-            console.log("Set to Default");
             setSortOrder(defaultSort);
-        }
+        };
     };
 
     const sortList = (a, b) => {
