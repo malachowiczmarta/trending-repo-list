@@ -3,6 +3,7 @@ import Axios from "axios";
 import ListItem from './ListItem';
 import Date from '../date/Date';
 import Language from '../language/Language'
+import Button from '../button/Button';
 
 
 function List () {
@@ -13,11 +14,17 @@ function List () {
     const [isError, setError] = useState(false);
     const [radio, setRadio] = useState('daily');
     const [language, setLanguage] = useState("");
+    const [sortOrder, setSortOrder] = useState("");
+    const ascendingSort = "ascending";
+    const descendingSort = "descending";
 
-    const getRepoList = async () => {
+    const getRepoList = async (language, radio) => {
         try {
-        return Axios.get(`http://localhost:8000/repositories?language=&since=daily`).then((response) => {
-            setRepoList(response.data);
+        return Axios.get(`http://localhost:8000/repositories?language=${language}&since=${radio}`).then((response) => {
+            setRepoList(response.data.map((item, index) => {
+                item.id = index;
+                return item;
+            }));
             setLoading(false);
         });
         } catch (error) {
@@ -28,27 +35,51 @@ function List () {
     };
 
     useEffect(() => {
-        getRepoList();
-    }, []);
+        getRepoList(language, radio);
+    }, [language, radio]);
 
     const onHandleDateChange = (dateRange) => {
         setRadio(dateRange);
-        console.log(dateRange)
     };
 
     const onHandleLangChange = (lang) => {
         setLanguage(lang)
-        console.log(lang)
     };
+
+
+
+    const onHandleBtnClick = () => {
+        if(sortOrder === "") {
+            console.log("Set to Ascending");
+            setSortOrder("ascending");
+        } else if (sortOrder === "ascending") {
+            console.log("Set to Descending");
+            setSortOrder("descending")
+        } else {
+            console.log("Set to Default");
+            setSortOrder("");
+        }
+    };
+
+    const sortList = (a, b) => {
+        if(sortOrder === ascendingSort) {
+            return (a.stars > b.stars) ? 1 : -1;
+        } else if (sortOrder === descendingSort) {
+            return (a.stars < b.stars) ? 1 : -1;
+        } else {
+            return (a.id > b.id) ? 1 : -1;
+        }
+    }
 
     return (
         <div>
             <Date handleDateChange={onHandleDateChange} radio={radio} />
+            <Button label="sort" handleClick={onHandleBtnClick} />
             <Language handleLangChange={onHandleLangChange} language={language} />
             <section className="list-container">
                 {isError && <p>An error has occurred, try later</p>}
-                {repoList.map((repo, index) => <ListItem key={`${index}-${repo.name}`} data={repo} />)}
-            </section> 
+                {repoList.sort(sortList).map((repo, index) => <ListItem key={`${index}-${repo.name}`} data={repo} />)}
+            </section>
         </div>
 
     )
