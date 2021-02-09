@@ -17,6 +17,7 @@ function List () {
     const [sortOrder, setSortOrder] = useState("");
     const ascendingSort = "ascending";
     const descendingSort = "descending";
+    const defaultSort = "";
 
     const getRepoList = async (language, radio) => {
         try {
@@ -49,15 +50,15 @@ function List () {
 
 
     const onHandleBtnClick = () => {
-        if(sortOrder === "") {
+        if(sortOrder === defaultSort) {
             console.log("Set to Ascending");
-            setSortOrder("ascending");
-        } else if (sortOrder === "ascending") {
+            setSortOrder(ascendingSort);
+        } else if (sortOrder === ascendingSort) {
             console.log("Set to Descending");
-            setSortOrder("descending")
+            setSortOrder(descendingSort)
         } else {
             console.log("Set to Default");
-            setSortOrder("");
+            setSortOrder(defaultSort);
         }
     };
 
@@ -78,7 +79,7 @@ function List () {
             <Language handleLangChange={onHandleLangChange} language={language} />
             <section className="list-container">
                 {isError && <p>An error has occurred, try later</p>}
-                {repoList.sort(sortList).map((repo, index) => <ListItem key={`${index}-${repo.name}`} data={repo} />)}
+                {repoList.sort(sortList).map(repo => <ListItem key={`${repo.name}-${repo.id}`} data={repo} />)}
             </section>
         </div>
 
