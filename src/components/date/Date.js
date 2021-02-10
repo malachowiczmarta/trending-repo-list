@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 const Date = ({handleDateChange, radio}) => {
 
   return (
