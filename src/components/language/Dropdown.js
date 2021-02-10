@@ -3,6 +3,7 @@ import { observer } from "mobx-react";
 import store from '../../store';
 import { BiDownArrow } from 'react-icons/bi';
 import { BiUpArrow } from 'react-icons/bi';
+import { BsCheck } from 'react-icons/bs';
 import Button from '../button/Button';
 
 const Dropdown = observer(({data}) => {
@@ -32,7 +33,12 @@ const Dropdown = observer(({data}) => {
         {isOpen && (
             <div className="dropdown-list" onClick={(e) => onHandleLangChange(e.target.value)}>
                 {data.map(lang => (
+                    <div>
+                        {store.language === lang.name ?
+                        <span style={{visibility: "visible"}} ><BsCheck /></span> :
+                        <span style={{visibility: "hidden"}} ><BsCheck /></span>}
                         <Button key={lang.urlParam} value={lang.name} label={lang.name}/>
+                    </div>
                 ))}
             </div>
         )}
