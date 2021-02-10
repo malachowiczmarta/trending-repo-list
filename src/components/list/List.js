@@ -6,7 +6,7 @@ import Language from '../language/Language'
 import Button from '../button/Button';
 
 import { observer } from "mobx-react";
-import store from '../../store'
+import store, { sortOption } from '../../store'
 
 
 const List = observer(() => {
@@ -16,10 +16,6 @@ const List = observer(() => {
     const [repoList, setRepoList] = useState([]);
     const [isLoading, setLoading] = useState(true);
     const [isError, setError] = useState(false);
-    // const [sortOrder, setSortOrder] = useState("");
-    const ascendingSort = "ascending";
-    const descendingSort = "descending";
-    const defaultSort = "";
 
     const getRepoList = async (language, radio) => {
         try {
@@ -60,9 +56,9 @@ const List = observer(() => {
     };
 
     const sortList = (a, b) => {
-        if(sortOrder === ascendingSort) {
+        if(sortOrder === sortOption.ASCENDING) {
             return (a.stars > b.stars) ? 1 : -1;
-        } else if (sortOrder === descendingSort) {
+        } else if (sortOrder === sortOption.DESCENDING) {
             return (a.stars < b.stars) ? 1 : -1;
         } else {
             return (a.id > b.id) ? 1 : -1;

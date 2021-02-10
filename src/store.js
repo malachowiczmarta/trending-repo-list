@@ -1,7 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 import { persistence, useClear, useDisposers, isSynchronized, StorageAdapter } from 'mobx-persist-store';
 
-const sortOption = {
+export const sortOption = {
     ASCENDING: "ascending",
     DESCENDING: "descending",
     DEFAULT: ""
