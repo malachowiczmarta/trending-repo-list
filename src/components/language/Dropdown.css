@@ -1,0 +1,29 @@
+.dropdown-wrapper {
+    position: relative;
+}
+
+.dropdown-list {
+    z-index: 99;
+    position: absolute;
+    /* right: 0; */
+    width: 300px;
+    border: 1px solid gray;
+    background-color: #ffffff;
+}
+
+.search-input {
+    box-sizing: border-box;
+    width: 98%;
+    border: 1px solid gray;
+    margin: 5px auto;
+    padding: 5px 2px;
+}
+
+.dropdown-header-title {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 120px;
+}
+
