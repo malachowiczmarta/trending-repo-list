@@ -6,7 +6,8 @@ function ListItem({data}) {
 
     return (
     <article className="list-item-container" >
-        <h2>{data.author}/{data.name}</h2>
+        <h2>{data.author}</h2>
+        <a href={`${data.url}`} target="_blank" rel="noreferrer">{data.name}</a>
         <p>{data.description}</p>
         <ul className="list-item-list">
             <li>{data.language}</li>
