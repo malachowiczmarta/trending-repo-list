@@ -42,14 +42,12 @@ const List = observer(() => {
         store.setDateRange(dateRange);
     };
 
-    const onHandleLangChange = (lang) => {
-        if (lang === "all") {
-            return store.setLanguage("")
-        };
-        store.setLanguage(lang);
-    };
-
-
+    // const onHandleLangChange = (lang) => {
+    //     if (lang === "all") {
+    //         return store.setLanguage("")
+    //     };
+    //     store.setLanguage(lang);
+    // };
 
     const onHandleBtnClick = () => {
         store.setSortOrder(sortOrder)
@@ -69,7 +67,7 @@ const List = observer(() => {
         <div>
             <Date handleDateChange={onHandleDateChange} radio={dateRange} />
             <Button label="sort" handleClick={onHandleBtnClick} />
-            <Language handleLangChange={onHandleLangChange} language={language} />
+            <Language language={language} />
             <section className="list-container">
                 {isError && <p>An error has occurred, try later</p>}
                 {repoList.sort(sortList).map(repo => <ListItem key={`${repo.name}-${repo.id}`} data={repo} />)}

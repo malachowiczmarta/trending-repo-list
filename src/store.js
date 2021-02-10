@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { persistence, useClear, useDisposers, isSynchronized, StorageAdapter } from 'mobx-persist-store';
+import { persistence, StorageAdapter } from 'mobx-persist-store';
 
 export const sortOption = {
     ASCENDING: "ascending",
@@ -53,7 +53,7 @@ class UiStore {
 
 export default persistence({
   name: 'UiStore',
-  properties: ['dateRange'],
+  properties: ['dateRange', 'language', 'sortOrder'],
   adapter: new StorageAdapter({
     read: readStore,
     write: writeStore,

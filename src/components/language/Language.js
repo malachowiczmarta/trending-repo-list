@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Axios from "axios";
+import Dropdown from './Dropdown';
 
 
-const Language = ({language, handleLangChange}) => {
-
-
+const Language = () => {
     const [languageList, setLanguageList] = useState([]);
     const [isLoading, setLoading] = useState(true);
     const [isError, setError] = useState(false);
+
 
     const getLanguageList = async () => {
         try {
@@ -15,7 +15,6 @@ const Language = ({language, handleLangChange}) => {
             const languages = response.data;
             const allLang = [{urlParam: "all-lang", name: "all"}];
             const data = allLang.concat(languages);
-            console.log(data)
             setLanguageList(data);
             setLoading(false);
         });
@@ -30,18 +29,7 @@ const Language = ({language, handleLangChange}) => {
         getLanguageList();
     }, []);
 
-  return (
-    <form>
-        <label>
-        Languages:
-        <select value={language} onChange={(event) => handleLangChange(event.target.value)}>
-            {languageList.map(lang => (
-                <option key={lang.urlParam} value={lang.name}>{lang.name}</option>
-            ))}
-        </select>
-        </label>
-    </form>
-  );
+  return <Dropdown data={languageList} />
 };
 
 export default Language;
