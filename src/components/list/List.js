@@ -5,19 +5,17 @@ import Date from '../date/Date';
 import Language from '../language/Language'
 import Button from '../button/Button';
 
+import { observer } from "mobx-react";
+import store, { sortOption } from '../../store'
 
-function List () {
 
+const List = observer(() => {
+
+    const {dateRange, language, sortOrder}  = store;
 
     const [repoList, setRepoList] = useState([]);
     const [isLoading, setLoading] = useState(true);
     const [isError, setError] = useState(false);
-    const [radio, setRadio] = useState('daily');
-    const [language, setLanguage] = useState("");
-    const [sortOrder, setSortOrder] = useState("");
-    const ascendingSort = "ascending";
-    const descendingSort = "descending";
-    const defaultSort = "";
 
     const getRepoList = async (language, radio) => {
         try {
@@ -37,36 +35,30 @@ function List () {
     };
 
     useEffect(() => {
-        getRepoList(language, radio);
-    }, [language, radio]);
+        getRepoList(language, dateRange);
+    }, [language, dateRange]);
 
     const onHandleDateChange = (dateRange) => {
-        setRadio(dateRange);
+        store.setDateRange(dateRange);
     };
 
     const onHandleLangChange = (lang) => {
         if (lang === "all") {
-            return setLanguage("")
+            return store.setLanguage("")
         };
-        setLanguage(lang);
+        store.setLanguage(lang);
     };
 
 
 
     const onHandleBtnClick = () => {
-        if(sortOrder === defaultSort) {
-            setSortOrder(ascendingSort);
-        } else if (sortOrder === ascendingSort) {
-            setSortOrder(descendingSort)
-        } else {
-            setSortOrder(defaultSort);
-        };
+        store.setSortOrder(sortOrder)
     };
 
     const sortList = (a, b) => {
-        if(sortOrder === ascendingSort) {
+        if(sortOrder === sortOption.ASCENDING) {
             return (a.stars > b.stars) ? 1 : -1;
-        } else if (sortOrder === descendingSort) {
+        } else if (sortOrder === sortOption.DESCENDING) {
             return (a.stars < b.stars) ? 1 : -1;
         } else {
             return (a.id > b.id) ? 1 : -1;
@@ -75,7 +67,7 @@ function List () {
 
     return (
         <div>
-            <Date handleDateChange={onHandleDateChange} radio={radio} />
+            <Date handleDateChange={onHandleDateChange} radio={dateRange} />
             <Button label="sort" handleClick={onHandleBtnClick} />
             <Language handleLangChange={onHandleLangChange} language={language} />
             <section className="list-container">
@@ -85,6 +77,6 @@ function List () {
         </div>
 
     )
-};
+});
 
 export default List;
