@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { observer } from "mobx-react";
 import store from '../../store';
-import { BiDownArrow } from 'react-icons/bi';
-import { BiUpArrow } from 'react-icons/bi';
+import { IoIosArrowUp } from 'react-icons/io';
+import { IoIosArrowDown } from 'react-icons/io';
 import { BsCheck } from 'react-icons/bs';
 import Button from '../button/Button';
 import "./Dropdown.css"
@@ -34,39 +34,44 @@ const Dropdown = observer(({data}) => {
         } else {
            store.setLanguage(lang);
         }
-        // setOpen(!isOpen)
+        setOpen(!isOpen)
     };
 
   return (
     <div className="dropdown-wrapper">
         <button className="dd-header" onClick={toggleList}>
             <div className="dropdown-header-title">
-                <h2>language: {store.language ? store.language : "all"}</h2>
-                {isOpen ? <BiUpArrow /> : <BiDownArrow />}
+                <p>language:</p><b>{store.language ? store.language : "all"}</b>
+                {isOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
             </div>
         </button>
 
         {isOpen && (
-            <div className="dropdown-list" onClick={(e) => onHandleLangChange(e.target.value)}>
+            <div className="dropdown-list">
                 <input className="search-input" type="text" placeholder="Search" value={searchTerm} onChange={handleChange}/>
                 {searchResults ? searchResults.map((lang, index) => (
                     <div>
                         {store.language === lang ?
                         <span style={{visibility: "visible"}} ><BsCheck /></span> :
                         <span style={{visibility: "hidden"}} ><BsCheck /></span>}
-                        <Button key={`search-${index}`} value={lang} label={lang} variant="lang" />
+                        <Button value={lang}
+                                label={lang}
+                                variant="lang"
+                                handleClick={(e) => {onHandleLangChange(e.target.value)}}/>
                     </div>
                 )) :
-                    <div>
-                        {data.map(lang => (
-                            <div>
-                            {store.language === lang.name ?
-                            <span style={{visibility: "visible"}} ><BsCheck /></span> :
-                            <span style={{visibility: "hidden"}} ><BsCheck /></span>}
-                            <Button key={lang.urlParam} value={lang.name} label={lang.name} variant="lang"/>
-                            </div>
-                        ))}
-                    </div>
+                    data.map(lang => (
+                        <div>
+                        {store.language === lang.name ?
+                        <span style={{visibility: "visible"}} ><BsCheck /></span> :
+                        <span style={{visibility: "hidden"}} ><BsCheck /></span>}
+                        <Button value={lang.name}
+                                    label={lang.name}
+                                    variant="lang"
+                                    handleClick={(e) => {onHandleLangChange(e.target.value)}}
+                        />
+                        </div>
+                    ))
                 }
             </div>
         )}

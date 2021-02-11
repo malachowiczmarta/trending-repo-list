@@ -5,17 +5,20 @@
 .dropdown-list {
     z-index: 99;
     position: absolute;
-    /* right: 0; */
-    width: 300px;
-    border: 1px solid gray;
+    left: 15px;
+    width: 270px;
+    height: 50vh;
+    overflow-y: scroll;
+    border: 1px solid var(--main-gray);
+    border-radius: 3px;
     background-color: #ffffff;
 }
 
 .search-input {
-    box-sizing: border-box;
-    width: 98%;
-    border: 1px solid gray;
-    margin: 5px auto;
+    width: 90%;
+    border: 1px solid var(--main-gray);
+    border-radius: 3px;
+    margin: 10px auto;
     padding: 5px 2px;
 }
 
@@ -24,6 +27,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    min-width: 120px;
+    margin: 0 20px;
 }
+
+.dropdown-header-title > p, b {
+    margin-right: 4px;
+}
+
 
