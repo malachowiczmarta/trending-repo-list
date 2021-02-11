@@ -3,9 +3,9 @@ import Axios from "axios";
 import ListItem from './ListItem';
 import Date from '../date/Date';
 import Language from '../language/Language'
-import Button from '../button/Button';
 import { IoIosArrowUp } from 'react-icons/io';
 import { IoIosArrowDown } from 'react-icons/io';
+import Loader from "react-loader-spinner";
 
 import { observer } from "mobx-react";
 import store, { sortOption } from '../../store'
@@ -55,6 +55,7 @@ const List = observer(() => {
 
     return (
         <section className="list-container">
+            {isError && <p>An error has occurred, try later</p>}
             <div className="filter-list-container">
                 <div className="filter-list-wrapper">
                     <Date handleDateChange={onHandleDateChange} radio={dateRange} />
@@ -63,8 +64,7 @@ const List = observer(() => {
                 </div>
             </div>
 
-            {isError && <p>An error has occurred, try later</p>}
-            {repoList.sort(sortList).map((repo, index) => <ListItem key={`${repo.name}-${index}`} data={repo} />)}
+            {isLoading ? <div className="loader-container"><Loader type="TailSpin" color="#00BFFF" height={80} width={80} /></div> : repoList.sort(sortList).map((repo, index) => <ListItem key={`${repo.name}-${index}`} data={repo} />)}
         </section>
     )
 });
