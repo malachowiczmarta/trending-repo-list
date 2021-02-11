@@ -6,9 +6,6 @@ import './List.css';
 import { BsStar } from 'react-icons/bs';
 import { VscRepoForked } from 'react-icons/vsc';
 
-
-
-
 const ListItem = observer(({data}) => {
     const {languageColor = "#DDDDDD"} = data;
 

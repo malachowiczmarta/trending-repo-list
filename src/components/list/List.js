@@ -22,10 +22,7 @@ const List = observer(() => {
     const getRepoList = async (language, radio) => {
         try {
             return Axios.get(`http://localhost:8000/repositories?language=${language}&since=${radio}`).then((response) => {
-            const data = response.data.map((item, index) => {
-                item.id = index;
-                return item;
-            });
+            const data = response.data
             setRepoList(data);
             setLoading(false);
         });
@@ -50,9 +47,9 @@ const List = observer(() => {
 
     const sortList = (a, b) => {
         if(sortOrder === sortOption.ASCENDING) {
-            return (a.stars > b.stars) ? 1 : -1;
+            return (a.currentPeriodStars > b.currentPeriodStars) ? 1 : -1;
         } else {
-            return (a.stars < b.stars) ? 1 : -1;
+            return (a.currentPeriodStars < b.currentPeriodStars) ? 1 : -1;
         }
     }
 
@@ -67,7 +64,7 @@ const List = observer(() => {
             </div>
 
             {isError && <p>An error has occurred, try later</p>}
-            {repoList.sort(sortList).map(repo => <ListItem key={`${repo.name}-${repo.id}`} data={repo} />)}
+            {repoList.sort(sortList).map((repo, index) => <ListItem key={`${repo.name}-${index}`} data={repo} />)}
         </section>
     )
 });
