@@ -8,7 +8,7 @@ import { BsCheck } from 'react-icons/bs';
 import Button from '../button/Button';
 import "./Dropdown.css"
 
-const Dropdown = observer(({data}) => {
+const Dropdown = observer(({data, isLoading}) => {
 
     const [isOpen, setOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");

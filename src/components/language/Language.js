@@ -29,7 +29,12 @@ const Language = () => {
         getLanguageList();
     }, []);
 
-  return <Dropdown data={languageList} />
+  return (
+      <>
+        {isError && <p>An error has occurred, try later</p>}
+        <Dropdown data={languageList} />
+      </>
+    )
 };
 
 export default Language;
