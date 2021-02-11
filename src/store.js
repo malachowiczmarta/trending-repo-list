@@ -34,24 +34,16 @@ class UiStore {
     };
 
     setSortOrder(type) {
-        switch(type) {
-          case sortOption.DESCENDING:
-            this.sortOrder = sortOption.ASCENDING;
-            break;
-          case sortOption.ASCENDING:
-            this.sortOrder = sortOption.DESCENDING;
-            break;
-          default:
-            this.sortOrder = sortOption.ASCENDING
-            // case sortOption.ASCENDING:
-            //     this.sortOrder = sortOption.DESCENDING;
-            //     break;
-            // case sortOption.DEFAULT:
-            //     this.sortOrder = sortOption.ASCENDING;
-            //     break;
-            // default:
-            //     this.sortOrder = sortOption.DEFAULT
-        }
+      switch(type) {
+        case sortOption.DESCENDING:
+          this.sortOrder = sortOption.ASCENDING;
+          break;
+        case sortOption.ASCENDING:
+          this.sortOrder = sortOption.DESCENDING;
+          break;
+        default:
+          this.sortOrder = sortOption.ASCENDING
+      }
     }
 
   constructor() {
