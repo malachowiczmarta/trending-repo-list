@@ -4,6 +4,8 @@ import ListItem from './ListItem';
 import Date from '../date/Date';
 import Language from '../language/Language'
 import Button from '../button/Button';
+import { IoIosArrowUp } from 'react-icons/io';
+import { IoIosArrowDown } from 'react-icons/io';
 
 import { observer } from "mobx-react";
 import store, { sortOption } from '../../store'
@@ -49,10 +51,8 @@ const List = observer(() => {
     const sortList = (a, b) => {
         if(sortOrder === sortOption.ASCENDING) {
             return (a.stars > b.stars) ? 1 : -1;
-        } else if (sortOrder === sortOption.DESCENDING) {
-            return (a.stars < b.stars) ? 1 : -1;
         } else {
-            return (a.id > b.id) ? 1 : -1;
+            return (a.stars < b.stars) ? 1 : -1;
         }
     }
 
@@ -62,7 +62,7 @@ const List = observer(() => {
                 <div className="filter-list-wrapper">
                     <Date handleDateChange={onHandleDateChange} radio={dateRange} />
                     <Language language={language} />
-                    <Button label="sort" handleClick={onHandleBtnClick} />  
+                    <button className="sort-btn" onClick={onHandleBtnClick}><p>sort</p>{sortOrder === sortOption.ASCENDING ? <IoIosArrowUp /> : <IoIosArrowDown />}</button>
                 </div>
             </div>
 

@@ -1,5 +1,6 @@
 .dropdown-wrapper {
     position: relative;
+    margin-left: 20px;
 }
 
 .dropdown-list {
@@ -27,7 +28,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 20px;
 }
 
 .dropdown-header-title > p, b {

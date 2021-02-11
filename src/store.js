@@ -4,7 +4,7 @@ import { persistence, StorageAdapter } from 'mobx-persist-store';
 export const sortOption = {
     ASCENDING: "ascending",
     DESCENDING: "descending",
-    DEFAULT: ""
+    // DEFAULT: ""
 }
 
 function readStore(name) {
@@ -35,14 +35,22 @@ class UiStore {
 
     setSortOrder(type) {
         switch(type) {
-            case sortOption.ASCENDING:
-                this.sortOrder = sortOption.DESCENDING;
-                break;
-            case sortOption.DEFAULT:
-                this.sortOrder = sortOption.ASCENDING;
-                break;
-            default:
-                this.sortOrder = sortOption.DEFAULT
+          case sortOption.DESCENDING:
+            this.sortOrder = sortOption.ASCENDING;
+            break;
+          case sortOption.ASCENDING:
+            this.sortOrder = sortOption.DESCENDING;
+            break;
+          default:
+            this.sortOrder = sortOption.ASCENDING
+            // case sortOption.ASCENDING:
+            //     this.sortOrder = sortOption.DESCENDING;
+            //     break;
+            // case sortOption.DEFAULT:
+            //     this.sortOrder = sortOption.ASCENDING;
+            //     break;
+            // default:
+            //     this.sortOrder = sortOption.DEFAULT
         }
     }
 

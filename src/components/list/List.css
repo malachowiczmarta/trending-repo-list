@@ -36,6 +36,18 @@
     justify-content: space-between;
 }
 
+.sort-btn {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.sort-btn > p {
+    margin-right: 4px;
+}
+
 @media (min-width: 768px) {
     .list-container {
         max-width: 700px;
