@@ -19,7 +19,6 @@ const Dropdown = ({children, label, langName}) => {
                 {isOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
             </div>
         </button>
-
         {isOpen && children}
     </div>
   );

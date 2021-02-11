@@ -33,33 +33,33 @@ const LangList = observer(({data}) => {
     };
 
   return (
-        <div className="dropdown-list">
-            <input className="search-input" type="text" placeholder="Search" value={searchTerm} onChange={handleChange}/>
-            {searchResults ? searchResults.map((lang, index) => (
+    <div className="dropdown-list">
+        <input className="search-input" type="text" placeholder="Search" value={searchTerm} onChange={handleChange}/>
+        {searchResults ? searchResults.map((lang, index) => (
+            <div>
+                {store.language === lang ?
+                <span style={{visibility: "visible"}} ><BsCheck /></span> :
+                <span style={{visibility: "hidden"}} ><BsCheck /></span>}
+                <Button value={lang}
+                        label={lang}
+                        variant="lang"
+                        handleClick={(e) => {onHandleLangChange(e.target.value)}}/>
+            </div>
+        )) :
+            data.map(lang => (
                 <div>
-                    {store.language === lang ?
-                    <span style={{visibility: "visible"}} ><BsCheck /></span> :
-                    <span style={{visibility: "hidden"}} ><BsCheck /></span>}
-                    <Button value={lang}
-                            label={lang}
+                {store.language === lang.name ?
+                <span style={{visibility: "visible"}} ><BsCheck /></span> :
+                <span style={{visibility: "hidden"}} ><BsCheck /></span>}
+                <Button value={lang.name}
+                            label={lang.name}
                             variant="lang"
-                            handleClick={(e) => {onHandleLangChange(e.target.value)}}/>
+                            handleClick={(e) => {onHandleLangChange(e.target.value)}}
+                />
                 </div>
-            )) :
-                data.map(lang => (
-                    <div>
-                    {store.language === lang.name ?
-                    <span style={{visibility: "visible"}} ><BsCheck /></span> :
-                    <span style={{visibility: "hidden"}} ><BsCheck /></span>}
-                    <Button value={lang.name}
-                                label={lang.name}
-                                variant="lang"
-                                handleClick={(e) => {onHandleLangChange(e.target.value)}}
-                    />
-                    </div>
-                ))
-            }
-        </div>
+            ))
+        }
+    </div>
   );
 });
 

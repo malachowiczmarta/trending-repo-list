@@ -9,6 +9,7 @@ import Loader from "react-loader-spinner";
 
 import { observer } from "mobx-react";
 import store, { sortOption } from '../../store'
+import Dropdown from '../dropdown/Dropdown';
 
 
 const List = observer(() => {
@@ -37,10 +38,6 @@ const List = observer(() => {
         getRepoList(language, dateRange);
     }, [language, dateRange]);
 
-    const onHandleDateChange = (dateRange) => {
-        store.setDateRange(dateRange);
-    };
-
     const onHandleBtnClick = () => {
         store.setSortOrder(sortOrder)
     };
@@ -58,7 +55,9 @@ const List = observer(() => {
             {isError && <p>An error has occurred, try later</p>}
             <div className="filter-list-container">
                 <div className="filter-list-wrapper">
-                    <Date handleDateChange={onHandleDateChange} radio={dateRange} />
+                    <Dropdown label="Date range " >
+                        <Date/>
+                    </Dropdown>
                     <LangContainer language={language} />
                     <button className="sort-btn" onClick={onHandleBtnClick}><p>sort</p>{sortOrder === sortOption.ASCENDING ? <IoIosArrowUp /> : <IoIosArrowDown />}</button>
                 </div>

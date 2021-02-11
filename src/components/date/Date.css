@@ -1,4 +1,32 @@
-.date-wrapper {
+.date-dd-wrapper {
     display: flex;
-    align-items: baseline;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 99;
+    position: absolute;
+    left: 0;
+    width: 270px;
+    height: 110px;
+    border: 1px solid var(--main-gray);
+    border-radius: 3px;
+    background-color: #ffffff;
+}
+
+.date-container {
+    margin: 0 0 0 10px;
+}
+
+.input-container {
+    display: block;
+    position: relative;
+    padding-left: 27px;
+    margin: 12px 0;
+    cursor: pointer;
+}
+
+.input-container input {
+    position: absolute;
+    left: 0;
+    margin: 0;
+    cursor: pointer;
 }

@@ -1,6 +1,7 @@
 :root {
     --main-gray: rgb(221, 221, 221);
     --second-gray: rgb(68, 68, 68);
+    --blue: #2196F3;
 }
 
 body {
