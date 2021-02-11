@@ -64,7 +64,8 @@ const List = observer(() => {
                 </div>
             </div>
 
-            {isLoading ? <div className="loader-container"><Loader type="TailSpin" color="#00BFFF" height={80} width={80} /></div> : repoList.sort(sortList).map((repo, index) => <ListItem key={`${repo.name}-${index}`} data={repo} />)}
+            {isLoading && <div className="loader-container"><Loader type="TailSpin" color="#00BFFF" height={80} width={80} /></div>}
+            {repoList && repoList.length > 0 ? repoList.sort(sortList).map((repo, index) => <ListItem key={`${repo.name}-${index}`} data={repo} />) : <h2 style={{margin: '30px auto', textAlign: 'center'}}>Sorry. We don’t have any trending repositories for {language}.</h2>}
         </section>
     )
 });
