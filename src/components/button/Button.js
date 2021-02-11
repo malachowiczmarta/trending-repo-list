@@ -1,10 +1,10 @@
 import React from 'react';
+import './Button.css'
 
-
-function Button({label, handleClick}) {
+function Button({label, handleClick, value, variant=""}) {
 
   return (
-    <button onClick={handleClick}>{label}</button>
+    <button onClick={handleClick} value={value} className={`btn-${variant}`}>{label}</button>
   );
 };
 

@@ -1,0 +1,15 @@
+button {
+    outline:none;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+}
+
+.btn-lang {
+    padding: 2px 6px;
+    /* box-sizing: border-box; */
+    width: 70%;
+    text-align: left;
+}
