@@ -1,0 +1,17 @@
+.dropdown-wrapper {
+    position: relative;
+    margin-left: 20px;
+}
+
+.dropdown-header-title {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown-header-title > p, b {
+    margin-right: 4px;
+}
+
+

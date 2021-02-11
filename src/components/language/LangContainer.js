@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Axios from "axios";
-import Dropdown from './Dropdown';
+import { observer } from "mobx-react";
+import store from '../../store';
+
+import Dropdown from '../dropdown/Dropdown';
+import LangList from './LangList';
 
 
-const Language = () => {
+const LangContainer = observer(() => {
     const [languageList, setLanguageList] = useState([]);
     const [isLoading, setLoading] = useState(true);
     const [isError, setError] = useState(false);
@@ -32,9 +36,11 @@ const Language = () => {
   return (
       <>
         {isError && <p>An error has occurred, try later</p>}
-        <Dropdown data={languageList} />
+        <Dropdown label="language: " langName={store.language ? store.language : "all"}>
+            <LangList data={languageList} />
+        </Dropdown>
       </>
     )
-};
+});
 
-export default Language;
+export default LangContainer;

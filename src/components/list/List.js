@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Axios from "axios";
 import ListItem from './ListItem';
 import Date from '../date/Date';
-import Language from '../language/Language'
+import LangContainer from '../language/LangContainer'
 import { IoIosArrowUp } from 'react-icons/io';
 import { IoIosArrowDown } from 'react-icons/io';
 import Loader from "react-loader-spinner";
@@ -59,7 +59,7 @@ const List = observer(() => {
             <div className="filter-list-container">
                 <div className="filter-list-wrapper">
                     <Date handleDateChange={onHandleDateChange} radio={dateRange} />
-                    <Language language={language} />
+                    <LangContainer language={language} />
                     <button className="sort-btn" onClick={onHandleBtnClick}><p>sort</p>{sortOrder === sortOption.ASCENDING ? <IoIosArrowUp /> : <IoIosArrowDown />}</button>
                 </div>
             </div>
