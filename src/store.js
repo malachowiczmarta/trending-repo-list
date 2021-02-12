@@ -4,7 +4,6 @@ import { persistence, StorageAdapter } from 'mobx-persist-store';
 export const sortOption = {
     ASCENDING: "ascending",
     DESCENDING: "descending",
-    // DEFAULT: ""
 }
 
 function readStore(name) {
@@ -25,12 +24,17 @@ class UiStore {
     dateRange = "daily";
     language = "";
     sortOrder = "";
+    isOpen = false;
 
     setDateRange(range) {
         this.dateRange = range
     };
     setLanguage(lang) {
         this.language = lang
+    };
+
+    setOpen() {
+      this.isOpen = !this.isOpen
     };
 
     setSortOrder(type) {

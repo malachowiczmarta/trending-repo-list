@@ -1,7 +1,7 @@
 .dropdown-list {
     z-index: 99;
     position: absolute;
-    left: 15px;
+    left: 0;
     width: 270px;
     height: 50vh;
     overflow-y: scroll;

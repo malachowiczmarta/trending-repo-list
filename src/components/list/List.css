@@ -27,6 +27,7 @@
 
 .list-item-container > p {
     margin: 10px 0;
+    line-height: 1.15;
 }
 
 .list-item-container:first-of-type {

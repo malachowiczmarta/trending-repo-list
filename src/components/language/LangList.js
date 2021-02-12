@@ -28,15 +28,15 @@ const LangList = observer(({data}) => {
             store.setLanguage("");
         } else {
            store.setLanguage(lang);
-        }
-        // setOpen(!isOpen)
+        };
+        store.setOpen();
     };
 
   return (
     <div className="dropdown-list">
         <input className="search-input" type="text" placeholder="Search" value={searchTerm} onChange={handleChange}/>
         {searchResults ? searchResults.map((lang, index) => (
-            <div>
+            <div key={`search-${index}`}>
                 {store.language === lang ?
                 <span style={{visibility: "visible"}} ><BsCheck /></span> :
                 <span style={{visibility: "hidden"}} ><BsCheck /></span>}
@@ -46,8 +46,8 @@ const LangList = observer(({data}) => {
                         handleClick={(e) => {onHandleLangChange(e.target.value)}}/>
             </div>
         )) :
-            data.map(lang => (
-                <div>
+            data.map((lang, index) => (
+                <div key={`lang-item-${index}`}>
                 {store.language === lang.name ?
                 <span style={{visibility: "visible"}} ><BsCheck /></span> :
                 <span style={{visibility: "hidden"}} ><BsCheck /></span>}
