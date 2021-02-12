@@ -1,11 +1,12 @@
-import React from 'react';
 import { observer } from "mobx-react";
 import store from '../../store'
 import "./Date.css"
 
+
+
 const Date = observer(() => {
 
-  const handleDateChange = (range) => {
+  const handleDateChange = (range: string) => {
     store.setDateRange(range);
   };
 

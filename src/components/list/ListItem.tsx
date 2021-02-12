@@ -5,8 +5,13 @@ import store from '../../store';
 import './List.css';
 import { BsStar } from 'react-icons/bs';
 import { VscRepoForked } from 'react-icons/vsc';
+import { Repository } from './List';
 
-const ListItem = observer(({data}) => {
+type ListItemProps = {
+    data: Repository
+}
+
+const ListItem = observer(({data} : ListItemProps) => {
     const {languageColor = "#DDDDDD"} = data;
 
     return (

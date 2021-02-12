@@ -6,9 +6,13 @@ import store from '../../store';
 import Dropdown from '../dropdown/Dropdown';
 import LangList from './LangList';
 
+export type LanguageElement = {
+    urlParam: string,
+    name: string
+}
 
 const LangContainer = observer(() => {
-    const [languageList, setLanguageList] = useState([]);
+    const [languageList, setLanguageList] = useState<Array<LanguageElement>>([]);
     const [isLoading, setLoading] = useState(true);
     const [isError, setError] = useState(false);
 

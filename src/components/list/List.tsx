@@ -11,16 +11,27 @@ import { observer } from "mobx-react";
 import store, { sortOption } from '../../store'
 import Dropdown from '../dropdown/Dropdown';
 
+export interface Repository {
+    author: string,
+    name: string,
+    url: string,
+    description: string,
+    language: string,
+    languageColor: string,
+    stars: number,
+    forks: number,
+    currentPeriodStars: number
+}
 
 const List = observer(() => {
 
     const {dateRange, language, sortOrder}  = store;
 
-    const [repoList, setRepoList] = useState([]);
+    const [repoList, setRepoList] = useState<Repository[]>([]);
     const [isLoading, setLoading] = useState(true);
     const [isError, setError] = useState(false);
 
-    const getRepoList = async (language, radio) => {
+    const getRepoList = async (language: string, radio: string) => {
         try {
             return Axios.get(`http://localhost:8000/repositories?language=${language}&since=${radio}`).then((response) => {
             const data = response.data
@@ -42,7 +53,7 @@ const List = observer(() => {
         store.setSortOrder(sortOrder)
     };
 
-    const sortList = (a, b) => {
+    const sortList = (a: Repository, b: Repository) => {
         if(sortOrder === sortOption.ASCENDING) {
             return (a.currentPeriodStars > b.currentPeriodStars) ? 1 : -1;
         } else {
@@ -55,10 +66,10 @@ const List = observer(() => {
             {isError && <p>An error has occurred, try later</p>}
             <div className="filter-list-container">
                 <div className="filter-list-wrapper">
-                    <Dropdown label="Date range " >
+                    <Dropdown label="Date range " langName={language} >
                         <Date/>
                     </Dropdown>
-                    <LangContainer language={language} />
+                    <LangContainer />
                     <button className="sort-btn" onClick={onHandleBtnClick}><p>sort</p>{sortOrder === sortOption.ASCENDING ? <IoIosArrowUp /> : <IoIosArrowDown />}</button>
                 </div>
             </div>

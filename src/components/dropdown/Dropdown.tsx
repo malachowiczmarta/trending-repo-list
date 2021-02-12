@@ -6,7 +6,13 @@ import { IoIosArrowUp } from 'react-icons/io';
 import { IoIosArrowDown } from 'react-icons/io';
 import "./Dropdown.css"
 
-const Dropdown = observer(({children, label, langName}) => {
+type DropdownProps = {
+    children: any,
+    label: string,
+    langName: string
+}
+
+const Dropdown = observer(({children, label, langName}: DropdownProps) => {
 
     // const [isOpen, setOpen] = useState(false);
     const toggleList = () => {
