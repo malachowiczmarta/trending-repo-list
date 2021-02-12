@@ -12,6 +12,7 @@
 
 .filter-list-wrapper {
     display: flex;
+    flex-direction: column;
     justify-content: flex-end;
     align-items: baseline;
     padding: 10px 18px;
@@ -81,14 +82,15 @@
     align-items: center;
 }
 
+@media (min-width: 576px) {
+    .filter-list-wrapper {
+        flex-direction: row;
+    }
+}
+
 @media (min-width: 768px) {
     .list-container {
         max-width: 750px;
-    }
-
-    .filter-list-wrapper {
-        /* max-width: 450px; */
-        margin: 0 0 0 auto;
     }
 
     .list-item-header {
@@ -99,10 +101,5 @@
         flex: 0.7;
         text-align: right;
     }
-
 }
 
-@media (min-width: 1200px) {
-
-
-}
