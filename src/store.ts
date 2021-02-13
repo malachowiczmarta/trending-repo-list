@@ -1,22 +1,23 @@
 import { makeAutoObservable } from 'mobx';
 import { persistence, StorageAdapter } from 'mobx-persist-store';
 
+// TODO: Change to TypeScript Enum
 export const sortOption = {
     ASCENDING: "ascending",
     DESCENDING: "descending",
 }
 
-function readStore(name) {
-  return new Promise((resolve) => {
-    const data = localStorage.getItem(name);
+function readStore(name: string) {
+  return new Promise<string | undefined>((resolve) => {
+    const data = localStorage.getItem(name) as string;
     resolve(JSON.parse(data));
   });
 }
 
-function writeStore(name, content) {
-  return new Promise((resolve) => {
+function writeStore(name: string, content: any) {
+  return new Promise<Error | undefined>((resolve) => {
     localStorage.setItem(name, JSON.stringify(content));
-    resolve();
+    resolve(undefined);
   });
 }
 
@@ -24,20 +25,15 @@ class UiStore {
     dateRange = "daily";
     language = "";
     sortOrder = "";
-    isOpen = false;
 
-    setDateRange(range) {
+    setDateRange(range: string) {
         this.dateRange = range
     };
-    setLanguage(lang) {
+    setLanguage(lang: string) {
         this.language = lang
     };
 
-    setOpen() {
-      this.isOpen = !this.isOpen
-    };
-
-    setSortOrder(type) {
+    setSortOrder(type: string) {
       switch(type) {
         case sortOption.DESCENDING:
           this.sortOrder = sortOption.ASCENDING;

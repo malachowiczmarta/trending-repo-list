@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import { observer } from "mobx-react";
 import store from '../../store'
 import "./Date.css"
 
-const Date = observer(() => {
+type DateProps = {
+  toggleDropdown: MouseEventHandler<HTMLButtonElement>
+}
 
-  const handleDateChange = (range) => {
+
+const Date = observer(({toggleDropdown}: DateProps) => {
+
+  const handleDateChange = (range: string) => {
     store.setDateRange(range);
+    toggleDropdown();
   };
 
   return (

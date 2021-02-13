@@ -1,17 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, MouseEventHandler } from 'react';
 import { observer } from "mobx-react";
 import store from '../../store';
 
 import { BsCheck } from 'react-icons/bs';
 import Button from '../button/Button';
 import "./Lang.css"
+import { LanguageElement } from './LangContainer';
 
-const LangList = observer(({data}) => {
+type LangListProps = {
+  data: LanguageElement[],
+  toggleDropdown: MouseEventHandler<HTMLButtonElement>
+}
+
+const LangList = observer(({data, toggleDropdown}: LangListProps) => {
 
     const [searchTerm, setSearchTerm] = useState("");
-    const [searchResults, setSearchResults] = useState([]);
+    const [searchResults, setSearchResults] = useState<string[]>([]);
 
-    const handleChange = event => {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
        setSearchTerm(event.target.value);
     };
 
@@ -23,13 +29,13 @@ const LangList = observer(({data}) => {
      }, [searchTerm, data]);
 
 
-    const onHandleLangChange = (lang) => {
+    const onHandleLangClick = (lang: string) => {
         if (lang === "all") {
             store.setLanguage("");
         } else {
            store.setLanguage(lang);
         };
-        store.setOpen();
+        toggleDropdown();
     };
 
   return (
@@ -43,7 +49,7 @@ const LangList = observer(({data}) => {
                 <Button value={lang}
                         label={lang}
                         variant="lang"
-                        handleClick={(e) => {onHandleLangChange(e.target.value)}}/>
+                        handleClick={(e) => {onHandleLangClick((e.target as any).value)}}/>
             </div>
         )) :
             data.map((lang, index) => (
@@ -54,7 +60,7 @@ const LangList = observer(({data}) => {
                 <Button value={lang.name}
                             label={lang.name}
                             variant="lang"
-                            handleClick={(e) => {onHandleLangChange(e.target.value)}}
+                            handleClick={(e) => {onHandleLangClick((e.target as any).value)}}
                 />
                 </div>
             ))
