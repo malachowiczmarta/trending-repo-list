@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, MouseEventHandler } from 'react';
 import { observer } from "mobx-react";
 import store from '../../store';
 
@@ -8,10 +8,11 @@ import "./Lang.css"
 import { LanguageElement } from './LangContainer';
 
 type LangListProps = {
-  data: LanguageElement[]
+  data: LanguageElement[],
+  toggleDropdown: MouseEventHandler<HTMLButtonElement>
 }
 
-const LangList = observer(({data}: LangListProps) => {
+const LangList = observer(({data, toggleDropdown}: LangListProps) => {
 
     const [searchTerm, setSearchTerm] = useState("");
     const [searchResults, setSearchResults] = useState<string[]>([]);
@@ -34,7 +35,7 @@ const LangList = observer(({data}: LangListProps) => {
         } else {
            store.setLanguage(lang);
         };
-        store.setOpen();
+        toggleDropdown();
     };
 
   return (

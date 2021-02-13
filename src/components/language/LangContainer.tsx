@@ -15,6 +15,7 @@ const LangContainer = observer(() => {
     const [languageList, setLanguageList] = useState<Array<LanguageElement>>([]);
     const [isLoading, setLoading] = useState(true);
     const [isError, setError] = useState(false);
+    const [isOpen, setOpen] = useState(false);
 
 
     const getLanguageList = async () => {
@@ -37,11 +38,15 @@ const LangContainer = observer(() => {
         getLanguageList();
     }, []);
 
+    const toggleDropdown = () => {
+        setOpen(!isOpen);
+    }
+
   return (
       <>
         {isError && <p>An error has occurred, try later</p>}
-        <Dropdown label="language: " langName={store.language ? store.language : "all"}>
-            <LangList data={languageList} />
+        <Dropdown label="language: " langName={store.language ? store.language : "all"} isOpen={isOpen} toggleDropdown={toggleDropdown}>
+            <LangList data={languageList} toggleDropdown={toggleDropdown}/>
         </Dropdown>
       </>
     )

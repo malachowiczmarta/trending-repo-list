@@ -25,17 +25,12 @@ class UiStore {
     dateRange = "daily";
     language = "";
     sortOrder = "";
-    isOpen = false;
 
     setDateRange(range: string) {
         this.dateRange = range
     };
     setLanguage(lang: string) {
         this.language = lang
-    };
-
-    setOpen() {
-      this.isOpen = !this.isOpen
     };
 
     setSortOrder(type: string) {
