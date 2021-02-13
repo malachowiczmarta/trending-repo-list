@@ -6,17 +6,22 @@ import Dropdown from '../dropdown/Dropdown';
 import Date from './Date';
 import { Open } from '../list/List';
 
-type DateContainerProp = {
-  toggleDropdown: any,
-  open: Open
-}
+// type DateContainerProp = {
+//   toggleDropdown: any,
+//   open: Open
+// }
 
-const DateContainer = observer(({toggleDropdown, open}: DateContainerProp) => {
-    const dateDdOpen = open.dateDd
+const DateContainer = observer(() => {
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDateDd = () => {
+    setIsOpen(!isOpen)
+  }
 
   return (
-    <Dropdown label="Date range " open={dateDdOpen} toggleDropdown={toggleDropdown} name="dateDd">
-        <Date name="dateDd" toggleDropdown={toggleDropdown}/>
+    <Dropdown label="Date range " open={isOpen} toggleDropdown={toggleDateDd}>
+        <Date toggleDropdown={toggleDateDd}/>
     </Dropdown>
     )
 });

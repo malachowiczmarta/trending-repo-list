@@ -4,31 +4,29 @@ import store from '../../store'
 import "./Date.css"
 
 type DateProps = {
-  toggleDropdown: MouseEventHandler<HTMLButtonElement>
-  name: string
+  toggleDropdown: any
 };
 
-const Date = observer(({toggleDropdown, name}: DateProps) => {
+const Date = observer(({toggleDropdown}: DateProps) => {
 
   const handleDateChange = (event: any) => {
     const targetValue = event.target.value
-    // const targetName = event.target.name
 
     store.setDateRange(targetValue);
-    toggleDropdown(event);
+    toggleDropdown();
   };
 
   return (
     <div className="date-dd-wrapper">
       <form className="date-container">
         <label className="input-container" htmlFor="daily">daily
-          <input name={name} type="radio" checked={store.dateRange === 'daily'} value="daily" onChange={(event) => handleDateChange(event)} />
+          <input type="radio" checked={store.dateRange === 'daily'} value="daily" onChange={(event) => handleDateChange(event)} />
         </label>
         <label className="input-container" htmlFor="weekly">weekly
-          <input name={name} type="radio" checked={store.dateRange === 'weekly'} value="weekly" onChange={(event) => handleDateChange(event)} />
+          <input type="radio" checked={store.dateRange === 'weekly'} value="weekly" onChange={(event) => handleDateChange(event)} />
         </label>
         <label className="input-container" htmlFor="monthly">monthly
-          <input name={name} type="radio" checked={store.dateRange === 'monthly'} value="monthly" onChange={(event) => handleDateChange(event)} />
+          <input type="radio" checked={store.dateRange === 'monthly'} value="monthly" onChange={(event) => handleDateChange(event)} />
         </label>
       </form>
     </div>

@@ -35,10 +35,10 @@ const List = observer(() => {
     const [repoList, setRepoList] = useState<Repository[]>([]);
     const [isLoading, setLoading] = useState(true);
     const [isError, setError] = useState(false);
-    const [isOpen, setOpen] = useState({
-                                            langDd: false,
-                                            dateDd: false
-                                        });
+    // const [isOpen, setOpen] = useState({
+    //                                         langDd: false,
+    //                                         dateDd: false
+    //                                     });
 
 
     const getRepoList = async (language: string, radio: string) => {
@@ -71,23 +71,23 @@ const List = observer(() => {
         }
     }
 
-    const toggleDropdown = (e: any) => {
-        const targetDd = e.target.name;
-        console.log(targetDd)
+    // const toggleDropdown = (e: any) => {
+    //     const targetDd = e.target.name;
+    //     console.log(targetDd)
 
-        if (targetDd === "dateDd") {
-            setOpen(prevState => ({
-                ...prevState,
-                dateDd: !isOpen.dateDd
-            }));
+    //     if (targetDd === "dateDd") {
+    //         setOpen(prevState => ({
+    //             ...prevState,
+    //             dateDd: !isOpen.dateDd
+    //         }));
 
-        } else if (targetDd === "langDd") {
-            setOpen(prevState => ({
-                ...prevState,
-                langDd: !isOpen.langDd
-            }));
-        }
-    };
+    //     } else if (targetDd === "langDd") {
+    //         setOpen(prevState => ({
+    //             ...prevState,
+    //             langDd: !isOpen.langDd
+    //         }));
+    //     }
+    // };
 
     const renderRepoList = () => {
         if (!repoList || !repoList.length) {
@@ -103,8 +103,8 @@ const List = observer(() => {
             {isError && <p>An error has occurred, try later</p>}
             <div className="filter-list-container">
                 <div className="filter-list-wrapper">
-                    <DateContainer open={isOpen} toggleDropdown={toggleDropdown}/>
-                    <LangContainer open={isOpen} toggleDropdown={toggleDropdown}/>
+                    <DateContainer/>
+                    <LangContainer/>
                     <button className="sort-btn" onClick={onHandleBtnClick}><p>sort</p>{sortOrder === sortOption.ASCENDING ? <IoIosArrowUp /> : <IoIosArrowDown />}</button>
                 </div>
             </div>

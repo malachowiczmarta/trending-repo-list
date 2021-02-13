@@ -9,11 +9,10 @@ import { LanguageElement } from './LangContainer';
 
 type LangListProps = {
   data: LanguageElement[],
-  toggleDropdown: MouseEventHandler<HTMLButtonElement>,
-  name: string
+  toggleDropdown: any,
 }
 
-const LangList = observer(({data, toggleDropdown, name}: LangListProps) => {
+const LangList = observer(({data, toggleDropdown}: LangListProps) => {
 
     const [searchTerm, setSearchTerm] = useState("");
     const [searchResults, setSearchResults] = useState<string[]>([]);
@@ -30,17 +29,14 @@ const LangList = observer(({data, toggleDropdown, name}: LangListProps) => {
      }, [searchTerm, data]);
 
 
-    const onHandleLangClick = (event: any) => {
-      const targetValue = event.target.value
-      // const targetName = event.target.name
+    const onHandleLangClick = (lang: string) => {
 
-        if (targetValue === "all") {
+        if (lang === "all") {
             store.setLanguage("");
         } else {
-           store.setLanguage(targetValue);
+           store.setLanguage(lang);
         };
-        toggleDropdown(event);
-        console.log(event)
+        toggleDropdown();
     };
 
   return (
@@ -65,8 +61,7 @@ const LangList = observer(({data, toggleDropdown, name}: LangListProps) => {
                 <Button value={lang.name}
                             label={lang.name}
                             variant="lang"
-                            name={name}
-                            handleClick={(e) => {onHandleLangClick(e)}}
+                            handleClick={(e) => {onHandleLangClick((e.target as any).value)}}
                 />
                 </div>
             ))

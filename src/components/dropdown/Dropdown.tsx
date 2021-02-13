@@ -9,15 +9,14 @@ type DropdownProps = {
     label: string,
     langName?: string,
     open: boolean,
-    name: string
     toggleDropdown: MouseEventHandler<HTMLButtonElement>
 }
 
-const Dropdown = ({children, label, langName, open, name, toggleDropdown}: DropdownProps) => {
+const Dropdown = ({children, label, langName, open, toggleDropdown}: DropdownProps) => {
 
   return (
     <div className="dropdown-wrapper">
-        <button className="dd-header" name={name} onClick={(e: any) => toggleDropdown(e)}>
+        <button className="dd-header" onClick={toggleDropdown}>
             <div className="dropdown-header-title">
                 <p>{label}</p>{langName && <b>{langName}</b>}
                 {open ? <IoIosArrowUp /> : <IoIosArrowDown />}

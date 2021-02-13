@@ -6,13 +6,12 @@ type ButtonProps = {
   handleClick: MouseEventHandler<HTMLButtonElement>,
   value: string,
   variant: string,
-  name?: string
 }
 
-function Button({label, handleClick, value, variant="", name}: ButtonProps) {
+function Button({label, handleClick, value, variant=""}: ButtonProps) {
 
   return (
-    <button onClick={handleClick} value={value} className={`btn-${variant}`} name={name}>{label}</button>
+    <button onClick={handleClick} value={value} className={`btn-${variant}`}>{label}</button>
   );
 };
 

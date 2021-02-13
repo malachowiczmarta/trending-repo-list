@@ -12,18 +12,21 @@ export type LanguageElement = {
     name: string
 };
 
-type LangContainerProp = {
-    toggleDropdown: any,
-    open: Open
-};
+// type LangContainerProp = {
+//     toggleDropdown: any,
+//     open: Open
+// };
 
-const LangContainer = observer(({toggleDropdown, open}: LangContainerProp) => {
+const LangContainer = observer(() => {
     const [languageList, setLanguageList] = useState<Array<LanguageElement>>([]);
     const [isLoading, setLoading] = useState(true);
     const [isError, setError] = useState(false);
-    const langDdOpen = open.langDd;
+    const [isOpen, setIsOpen] = useState(false);
 
-
+    const toggleLangDd = () => {
+      setIsOpen(!isOpen)
+    }
+  
 
     const getLanguageList = async () => {
         try {
@@ -49,8 +52,8 @@ const LangContainer = observer(({toggleDropdown, open}: LangContainerProp) => {
   return (
       <>
         {isError && <p>An error has occurred, try later</p>}
-        <Dropdown label="language: " langName={store.language ? store.language : "all"} open={langDdOpen} toggleDropdown={toggleDropdown} name="langDd">
-            <LangList name="langDd" data={languageList} toggleDropdown={toggleDropdown}/>
+        <Dropdown label="language: " langName={store.language ? store.language : "all"} open={isOpen} toggleDropdown={toggleLangDd}>
+            <LangList data={languageList} toggleDropdown={toggleLangDd}/>
         </Dropdown>
       </>
     )
