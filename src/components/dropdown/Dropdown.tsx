@@ -7,22 +7,23 @@ import "./Dropdown.css"
 type DropdownProps = {
     children: any,
     label: string,
-    langName: string,
-    isOpen: boolean,
+    langName?: string,
+    open: boolean,
+    name: string
     toggleDropdown: MouseEventHandler<HTMLButtonElement>
 }
 
-const Dropdown = ({children, label, langName, isOpen, toggleDropdown}: DropdownProps) => {
+const Dropdown = ({children, label, langName, open, name, toggleDropdown}: DropdownProps) => {
 
   return (
     <div className="dropdown-wrapper">
-        <button className="dd-header" onClick={toggleDropdown}>
+        <button className="dd-header" name={name} onClick={(e: any) => toggleDropdown(e)}>
             <div className="dropdown-header-title">
                 <p>{label}</p>{langName && <b>{langName}</b>}
-                {isOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
+                {open ? <IoIosArrowUp /> : <IoIosArrowDown />}
             </div>
         </button>
-        {isOpen && children}
+        {open && children}
     </div>
   );
 };
