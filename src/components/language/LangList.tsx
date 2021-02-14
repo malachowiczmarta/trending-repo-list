@@ -9,7 +9,7 @@ import { LanguageElement } from './LangContainer';
 
 type LangListProps = {
   data: LanguageElement[],
-  toggleDropdown: MouseEventHandler<HTMLButtonElement>
+  toggleDropdown: any,
 }
 
 const LangList = observer(({data, toggleDropdown}: LangListProps) => {
@@ -30,6 +30,7 @@ const LangList = observer(({data, toggleDropdown}: LangListProps) => {
 
 
     const onHandleLangClick = (lang: string) => {
+
         if (lang === "all") {
             store.setLanguage("");
         } else {

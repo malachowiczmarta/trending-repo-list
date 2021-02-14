@@ -9,7 +9,12 @@ import Loader from "react-loader-spinner";
 
 import { observer } from "mobx-react";
 import store, { sortOption } from '../../store'
-import Dropdown from '../dropdown/Dropdown';
+import DateContainer from '../date/DateContainer';
+
+export interface Open {
+    langDd: boolean,
+    dateDd: boolean
+}
 
 export interface Repository {
     author: string,
@@ -30,6 +35,11 @@ const List = observer(() => {
     const [repoList, setRepoList] = useState<Repository[]>([]);
     const [isLoading, setLoading] = useState(true);
     const [isError, setError] = useState(false);
+    // const [isOpen, setOpen] = useState({
+    //                                         langDd: false,
+    //                                         dateDd: false
+    //                                     });
+
 
     const getRepoList = async (language: string, radio: string) => {
         try {
@@ -61,6 +71,24 @@ const List = observer(() => {
         }
     }
 
+    // const toggleDropdown = (e: any) => {
+    //     const targetDd = e.target.name;
+    //     console.log(targetDd)
+
+    //     if (targetDd === "dateDd") {
+    //         setOpen(prevState => ({
+    //             ...prevState,
+    //             dateDd: !isOpen.dateDd
+    //         }));
+
+    //     } else if (targetDd === "langDd") {
+    //         setOpen(prevState => ({
+    //             ...prevState,
+    //             langDd: !isOpen.langDd
+    //         }));
+    //     }
+    // };
+
     const renderRepoList = () => {
         if (!repoList || !repoList.length) {
             return null;
@@ -75,10 +103,8 @@ const List = observer(() => {
             {isError && <p>An error has occurred, try later</p>}
             <div className="filter-list-container">
                 <div className="filter-list-wrapper">
-                    <Dropdown label="Date range " langName={language} >
-                        <Date/>
-                    </Dropdown>
-                    <LangContainer />
+                    <DateContainer/>
+                    <LangContainer/>
                     <button className="sort-btn" onClick={onHandleBtnClick}><p>sort</p>{sortOrder === sortOption.ASCENDING ? <IoIosArrowUp /> : <IoIosArrowDown />}</button>
                 </div>
             </div>

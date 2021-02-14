@@ -5,7 +5,7 @@ type ButtonProps = {
   label: string,
   handleClick: MouseEventHandler<HTMLButtonElement>,
   value: string,
-  variant: string
+  variant: string,
 }
 
 function Button({label, handleClick, value, variant=""}: ButtonProps) {
