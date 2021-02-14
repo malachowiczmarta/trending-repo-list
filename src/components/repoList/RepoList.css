@@ -26,7 +26,7 @@
     margin: 10px 0;
 }
 
-.list-item-container > p {
+.list-item-container>p {
     margin: 10px 0;
     line-height: 1.15;
 }
@@ -43,7 +43,7 @@
     margin: 0 0 10px 0;
 }
 
-.list-item-header > a {
+.list-item-header>a {
     text-decoration: none;
     font-size: 20px;
     font-weight: 600;
@@ -57,7 +57,7 @@
     justify-content: space-between;
 }
 
-.list-item-list > li:last-of-type {
+.list-item-list>li:last-of-type {
     flex: 0 auto;
     text-align: center;
 }
@@ -70,7 +70,7 @@
     margin-left: 20px;
 }
 
-.sort-btn > p {
+.sort-btn>p {
     margin-right: 4px;
 }
 
@@ -92,14 +92,11 @@
     .list-container {
         max-width: 750px;
     }
-
     .list-item-header {
         flex-direction: row;
     }
-
-    .list-item-list > li:last-of-type {
+    .list-item-list>li:last-of-type {
         flex: 0.7;
         text-align: right;
     }
 }
-

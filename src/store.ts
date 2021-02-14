@@ -64,6 +64,6 @@ export default persistence({
     write: writeStore,
   }),
   reactionOptions: {
-    delay: 50,
+    delay: 10,
   },
 })(new UiStore());

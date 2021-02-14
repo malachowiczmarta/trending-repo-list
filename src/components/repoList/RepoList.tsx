@@ -10,12 +10,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import Loader from "react-loader-spinner";
 import DateContainer from "../date/DateContainer";
 
-export interface Open {
-  langDd: boolean;
-  dateDd: boolean;
-}
-
-export interface Repository {
+export type Repository = {
   author: string;
   name: string;
   url: string;
