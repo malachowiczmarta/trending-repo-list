@@ -1,4 +1,5 @@
-# Getting Started with Create React App
+# Trending Github repository list 
+In Github trending list you can find the repositories that are most popular for the community. You can filter them by selecting your preferred coding language or time-frequency.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
