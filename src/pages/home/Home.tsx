@@ -9,6 +9,6 @@ function Home() {
         <List />
       </div>
     );
-}
+};
 
 export default Home;

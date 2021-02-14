@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Axios from "axios";
+import { observer } from "mobx-react";
+import store, { sortOption } from '../../store'
+
 import ListItem from './ListItem';
-import Date from '../date/Date';
 import LangContainer from '../language/LangContainer'
 import { IoIosArrowUp } from 'react-icons/io';
 import { IoIosArrowDown } from 'react-icons/io';
 import Loader from "react-loader-spinner";
-
-import { observer } from "mobx-react";
-import store, { sortOption } from '../../store'
 import DateContainer from '../date/DateContainer';
 
 export interface Open {
@@ -35,24 +34,20 @@ const List = observer(() => {
     const [repoList, setRepoList] = useState<Repository[]>([]);
     const [isLoading, setLoading] = useState(true);
     const [isError, setError] = useState(false);
-    // const [isOpen, setOpen] = useState({
-    //                                         langDd: false,
-    //                                         dateDd: false
-    //                                     });
-
 
     const getRepoList = async (language: string, radio: string) => {
         try {
-            return Axios.get(`http://localhost:8000/repositories?language=${language}&since=${radio}`).then((response) => {
+            return Axios.get(`http://localhost:8000/repositories?language=${language}&since=${radio}`)
+            .then((response) => {
             const data = response.data
             setRepoList(data);
             setLoading(false);
         });
         } catch (error) {
-        console.error(error);
-        setError(true);
-        setLoading(false);
-        }
+            console.error(error);
+            setError(true);
+            setLoading(false);
+        };
     };
 
     useEffect(() => {
@@ -68,33 +63,17 @@ const List = observer(() => {
             return (a.currentPeriodStars > b.currentPeriodStars) ? 1 : -1;
         } else {
             return (a.currentPeriodStars < b.currentPeriodStars) ? 1 : -1;
-        }
-    }
-
-    // const toggleDropdown = (e: any) => {
-    //     const targetDd = e.target.name;
-    //     console.log(targetDd)
-
-    //     if (targetDd === "dateDd") {
-    //         setOpen(prevState => ({
-    //             ...prevState,
-    //             dateDd: !isOpen.dateDd
-    //         }));
-
-    //     } else if (targetDd === "langDd") {
-    //         setOpen(prevState => ({
-    //             ...prevState,
-    //             langDd: !isOpen.langDd
-    //         }));
-    //     }
-    // };
+        };
+    };
 
     const renderRepoList = () => {
         if (!repoList || !repoList.length) {
             return null;
         }
         return (
-            repoList.sort(sortList).map((repo, index) => <ListItem key={`${repo.name}-${index}`} data={repo} />)
+            repoList.sort(sortList).map((repo, index) => (
+            <ListItem key={`${repo.name}-${index}`} data={repo}/>
+            ))
         );
     };
 
@@ -105,14 +84,24 @@ const List = observer(() => {
                 <div className="filter-list-wrapper">
                     <DateContainer/>
                     <LangContainer/>
-                    <button className="sort-btn" onClick={onHandleBtnClick}><p>sort</p>{sortOrder === sortOption.ASCENDING ? <IoIosArrowUp /> : <IoIosArrowDown />}</button>
+                    <button className="sort-btn" onClick={onHandleBtnClick}>
+                        <p>sort</p>
+                        {sortOrder === sortOption.ASCENDING ? <IoIosArrowUp /> : <IoIosArrowDown />}
+                    </button>
                 </div>
             </div>
 
-            {isLoading && <div className="loader-container"><Loader type="TailSpin" color="#00BFFF" height={80} width={80} /></div>}
+            {isLoading && 
+                <div className="loader-container">
+                    <Loader type="TailSpin" color="#00BFFF" height={80} width={80}/>
+                </div>
+            }
             {renderRepoList()}
             {(!repoList.length && !isLoading) &&
-                <h2 style={{margin: '30px auto', textAlign: 'center'}}>Sorry. We don't have any trending repositories for {language}.</h2>}
+                <h2 style={{margin: '30px auto', textAlign: 'center'}}>
+                    Sorry. We don't have any trending repositories for {language}.
+                </h2>
+            }
         </section>
     )
 });

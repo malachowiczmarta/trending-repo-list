@@ -1,4 +1,4 @@
-import React, { useEffect, useState, MouseEventHandler } from 'react';
+import React, { useEffect, useState } from 'react';
 import { observer } from "mobx-react";
 import store from '../../store';
 
@@ -50,7 +50,8 @@ const LangList = observer(({data, toggleDropdown}: LangListProps) => {
                 <Button value={lang}
                         label={lang}
                         variant="lang"
-                        handleClick={(e) => {onHandleLangClick((e.target as any).value)}}/>
+                        handleClick={(e) => {onHandleLangClick((e.target as any).value)}}
+                />
             </div>
         )) :
             data.map((lang, index) => (
@@ -64,8 +65,7 @@ const LangList = observer(({data, toggleDropdown}: LangListProps) => {
                             handleClick={(e) => {onHandleLangClick((e.target as any).value)}}
                 />
                 </div>
-            ))
-        }
+        ))}
     </div>
   );
 });

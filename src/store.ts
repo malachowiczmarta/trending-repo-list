@@ -1,10 +1,15 @@
 import { makeAutoObservable } from 'mobx';
 import { persistence, StorageAdapter } from 'mobx-persist-store';
 
-// TODO: Change to TypeScript Enum
 export const sortOption = {
     ASCENDING: "ascending",
     DESCENDING: "descending",
+}
+
+export const dateRangeOption = {
+  DAILY: "daily",
+  WEEKLY: "weekly",
+  MONTHLY: "monthly"
 }
 
 function readStore(name: string) {
@@ -22,7 +27,7 @@ function writeStore(name: string, content: any) {
 }
 
 class UiStore {
-    dateRange = "daily";
+    dateRange = dateRangeOption.DAILY;
     language = "";
     sortOrder = "";
 
