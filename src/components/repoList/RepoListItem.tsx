@@ -2,16 +2,16 @@ import React from 'react';
 import { observer } from "mobx-react";
 import store from '../../store';
 
-import './List.css';
+import './RepoList.css';
 import { BsStar } from 'react-icons/bs';
 import { VscRepoForked } from 'react-icons/vsc';
-import { Repository } from './List';
+import { Repository } from './RepoList';
 
 type ListItemProps = {
     data: Repository
 }
 
-const ListItem = observer(({data} : ListItemProps) => {
+const RepoListItem = observer(({data} : ListItemProps) => {
     const {languageColor = "#DDDDDD"} = data;
 
     return (
@@ -32,4 +32,4 @@ const ListItem = observer(({data} : ListItemProps) => {
     )
 });
 
-export default ListItem;
+export default RepoListItem;

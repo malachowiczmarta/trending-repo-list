@@ -3,7 +3,7 @@ import Axios from "axios";
 import { observer } from "mobx-react";
 import store, { sortOption } from '../../store'
 
-import ListItem from './ListItem';
+import RepoListItem from './RepoListItem';
 import LangContainer from '../language/LangContainer'
 import { IoIosArrowUp } from 'react-icons/io';
 import { IoIosArrowDown } from 'react-icons/io';
@@ -27,7 +27,7 @@ export interface Repository {
     currentPeriodStars: number
 }
 
-const List = observer(() => {
+const RepoList = observer(() => {
 
     const {dateRange, language, sortOrder}  = store;
 
@@ -72,7 +72,7 @@ const List = observer(() => {
         }
         return (
             repoList.sort(sortList).map((repo, index) => (
-            <ListItem key={`${repo.name}-${index}`} data={repo}/>
+            <RepoListItem key={`${repo.name}-${index}`} data={repo}/>
             ))
         );
     };
@@ -106,4 +106,4 @@ const List = observer(() => {
     )
 });
 
-export default List;
+export default RepoList;
