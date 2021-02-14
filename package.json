@@ -26,7 +26,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prepare-api": "./scripts/download-and-build-api.sh",
+    "start-api": "./scripts/start-api.sh",
+    "stop-api": "./scripts/stop-api.sh"
   },
   "eslintConfig": {
     "extends": [
